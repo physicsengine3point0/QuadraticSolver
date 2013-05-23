@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
-*Author: Noah Baskes
+*Author: Me.
 * AP Computer Science A
 * Goal: Sets up a user interface Sudoku board.
 **/
