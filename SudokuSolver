@@ -1,0 +1,120 @@
+import java.awt.*;
+
+/**
+*Author: Noah Baskes
+* AP Computer Science A
+* Goal: Sets up a user interface Sudoku board.
+**/
+
+import java.util.*;
+
+public class Board extends Frame
+{
+  Space[][] myBoard=new Space[9][9];
+	int[] digits=new int[9];
+	
+	public Board()
+	{
+		for(int i=0; i<digits.length; i++)
+		{
+			digits[i]=i+1;
+		}
+	}
+	
+	public void setSpace(int row, int col, Space sp)
+	{
+		myBoard[row][col]=sp;
+	}
+	
+	public void setSpaceInt(int row, int col, int number)
+	{
+		myBoard[row][col].setHeld(number);
+	}
+	
+	public Space getHeld(int row, int col)
+	{
+		return myBoard[row][col];
+	}
+	
+	public int getIntHeld(int row, int col)
+	{
+		return myBoard[row][col].getHeld();
+	}
+	
+	/**
+	 * Returns all possible digits that are not in input.
+	 * 
+	 */
+	public static ArrayList<Integer> reverseDigitSet(ArrayList<Integer> input)
+	{
+		ArrayList<Integer> reversed=new ArrayList<Integer>();
+		for(int i=0; i<9; i++)
+		{
+			for(int k=0; k<9; k++)
+			{
+				if(input.get(k)==i+1)
+				{
+					break;
+				}
+				else if(k==8)
+				{
+					reversed.add(i+1);
+				}
+			}
+		}
+		return reversed;
+	}
+	
+	public ArrayList<Integer> getMissingRow(int row)
+	{
+		ArrayList<Integer> have=new ArrayList<Integer>();
+		for(int i=0; i<9; i++)
+		{
+			for(int k=1; k<10; k++)
+			{
+				if(myBoard[row][i].getHeld()==k)
+				{
+					have.add(k);
+				}
+			}
+		}
+		return reverseDigitSet(have);
+	}
+	
+	public ArrayList<Integer> getMissingCol(int col)
+	{
+		ArrayList<Integer> have=new ArrayList<Integer>();
+		for(int i=0; i<9; i++)
+		{
+			for(int k=1; k<10; k++)
+			{
+				if(myBoard[i][col].getHeld()==k)
+				{
+					have.add(k);
+				}
+			}
+		}
+		return reverseDigitSet(have);
+	}
+	
+	public ArrayList<Integer> getMissingBox(int box)
+	{
+		
+	}
+	
+	public getStartingRow(int box)
+	{
+		if(box==1||box==2||box==3)
+		{
+			return 0;
+		}
+		else if(box==4||box==5||box==6)
+		{
+			return 3;
+		}
+		else
+		{
+			return 6;
+		}
+	}
+}
