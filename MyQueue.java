@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class BaskesQueue<E> implements Queue<E>
+public class MyQueue<E> implements Queue<E>
 {
   private ArrayList<E> queue;
 	public BaskesQueue()
